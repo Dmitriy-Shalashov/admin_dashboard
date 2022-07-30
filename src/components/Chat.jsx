@@ -1,10 +1,10 @@
 import React from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
 const Chat = () => {
-  return <div></div>;
+  return <div>Chat</div>;
 };
 
-Chat.propTypes = {};
+// Chat.propTypes = {};
 
 export default Chat;
