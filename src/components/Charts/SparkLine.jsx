@@ -1,10 +1,39 @@
 import React from "react";
-import PropTypes from "prop-types";
+import {
+  SparklineComponent,
+  Inject,
+  SparklineTooltip,
+} from "@syncfusion/ej2-react-charts";
+// import PropTypes from "prop-types";
 
-const SparkLine = () => {
-  return <div></div>;
+const SparkLine = ({ id, height, width, color, data, type, currentColor }) => {
+  return (
+    <SparklineComponent
+      id={id}
+      height={height}
+      width={width}
+      lineWidth={1}
+      valueType="Numeric"
+      fill={color}
+      border={{ color: currentColor, width: 2 }}
+      dataSource={data}
+      xName="x"
+      yName="yval"
+      type={type}
+      tooltipSettings={{
+        visible: true,
+        format: "${x} : data ${yval}",
+        trackLineSettings: {
+          visible: true,
+        },
+      }}
+      markerSettings={{ visible: ["All"], size: 5, fill: currentColor }}
+    >
+      <Inject services={[SparklineTooltip]} />
+    </SparklineComponent>
+  );
 };
 
-SparkLine.propTypes = {};
+// SparkLine.propTypes = {};
 
 export default SparkLine;

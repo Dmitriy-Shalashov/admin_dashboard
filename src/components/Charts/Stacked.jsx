@@ -1,10 +1,47 @@
 import React from "react";
-import PropTypes from "prop-types";
+import {
+  ChartComponent,
+  SeriesCollectionDirective,
+  SeriesDirective,
+  Inject,
+  Legend,
+  Category,
+  StackingColumnSeries,
+  Tooltip,
+} from "@syncfusion/ej2-react-charts";
 
-const Stacked = () => {
-  return <div></div>;
+import {
+  stackedCustomSeries,
+  stackedPrimaryXAxis,
+  stackedPrimaryYAxis,
+} from "../../data/dummy";
+
+// import { useStateContext } from "../../contexts/ContextProvider";
+
+// import PropTypes from "prop-types";
+
+const Stacked = ({ width, height }) => {
+  return (
+    <ChartComponent
+      width={width}
+      height={height}
+      id="charts"
+      primaryXAxis={stackedPrimaryXAxis}
+      primaryYAxis={stackedPrimaryYAxis}
+      chartArea={{ border: { width: 0 } }}
+      tooltip={{ enable: true }}
+      legendSettings={{ background: "white" }}
+    >
+      <Inject services={[Legend, Category, StackingColumnSeries, Tooltip]} />
+      <SeriesCollectionDirective>
+        {stackedCustomSeries.map((item, index) => (
+          <SeriesDirective key={index} {...item} />
+        ))}
+      </SeriesCollectionDirective>
+    </ChartComponent>
+  );
 };
 
-Stacked.propTypes = {};
+// Stacked.propTypes = {};
 
 export default Stacked;
